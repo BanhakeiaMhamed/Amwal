@@ -1,0 +1,55 @@
+<div class="dashboard-container">
+  <h2>Dashboard</h2>
+
+  <!-- Formulaire de gestion des mots -->
+  <form [formGroup]="wordForm" (ngSubmit)="saveWord()" class="form">
+    <input type="text" placeholder="Mot en Français" formControlName="wordFr" required />
+    <input type="text" placeholder="Mot en Tarifit" formControlName="wordTarifit" required />
+    <input type="text" placeholder="Mot en Tifinagh" formControlName="wordTifinagh" required />
+    <input type="text" placeholder="Phonétique" formControlName="phonetic" />
+    <input type="text" placeholder="Synonymes (séparés par des virgules)" formControlName="synonyms" />
+    <input type="text" placeholder="Exemples (séparés par des virgules)" formControlName="examples" />
+
+    <!-- Champ pour l'URL de l'image (affichage) -->
+    <input type="url" placeholder="URL de l'image" formControlName="imageUrl" />
+
+    <!-- Bouton pour importer une image -->
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+
+    <!-- Affichage de l'image -->
+    <div *ngIf="previewImage">
+      <p>Image sélectionnée :</p>
+      <img [src]="previewImage" alt="Image du mot" class="preview-image" />
+    </div>
+
+    <button type="submit">{{ editingWordId ? 'Modifier' : 'Créer' }}</button>
+    <button type="button" (click)="resetForm()">Annuler</button>
+  </form>
+
+  <!-- Liste des mots -->
+  <table>
+    <thead>
+    <tr>
+      <th>Français</th>
+      <th>Tarifit</th>
+      <th>Tifinagh</th>
+      <th>Image</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let word of words">
+      <td>{{ word.wordFr }}</td>
+      <td>{{ word.wordTarifit }}</td>
+      <td>{{ word.wordTifinagh }}</td>
+      <td>
+        <img *ngIf="word.imageUrl" [src]="word.imageUrl" alt="{{ word.wordFr }}" class="word-image" />
+      </td>
+      <td>
+        <button (click)="editWord(word)">Modifier</button>
+        <button (click)="deleteWord(word.id)">Supprimer</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

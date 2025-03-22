@@ -1,0 +1,32 @@
+<div
+  class="sidebar"
+  [ngClass]="{
+    show,
+    vertical: position === 'top' || position === 'bottom',
+    horizontal: position === 'left' || position === 'right'
+  }"
+  [ngStyle]="{
+    height : (position === 'top' || position === 'bottom') ? show ? height+'px' : 0 : '100%',
+    width : (position === 'left' || position === 'right') ? show ? width+'px' : 0 : '100%',
+  }"
+>
+  <p-card
+    ><ng-template pTemplate="header">
+      <div class="sidebar-header border-bottom-1">
+        <div>{{ title }}</div>
+      </div>
+    </ng-template>
+    <ng-container #sidebarContent>{{ content }}</ng-container>
+    <ng-template *ngIf="footerActions.length > 0" pTemplate="footer">
+      <div class="sidebar-footer flex mt-1">
+        <p-button
+          *ngFor="let btn of footerActions"
+          [label]="btn.name"
+          (onClick)="btn.action ? btn.action() : undefined"
+          [outlined]="btn.outlined"
+          [disabled]="btn.disabled"
+          [styleClass]="btn.class"
+        ></p-button>
+      </div> </ng-template
+  ></p-card>
+</div>

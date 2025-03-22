@@ -1,0 +1,46 @@
+<div class="container">
+  <!-- 🔄 Sélection du dictionnaire -->
+  <div class="dictionary-selector">
+    <label for="dictionaryType">Type de dictionnaire :</label>
+    <select id="dictionaryType" [(ngModel)]="dictionaryType">
+      <option value="frToTarifit">Français → Tarifit</option>
+      <option value="tarifitToFr">Tarifit → Français</option>
+    </select>
+  </div>
+
+  <!-- 🔍 Barre de Recherche -->
+  <div class="search-bar">
+    <input type="text" [(ngModel)]="query" placeholder="Rechercher un mot..." />
+    <button (click)="search()">Rechercher</button>
+  </div>
+
+  <!-- 📖 Résultats -->
+  <div class="results" *ngIf="wordResults.length > 0">
+    <div *ngFor="let word of wordResults" class="word-card">
+      <div class="word-content">
+        <!-- 🖼️ Image à gauche -->
+        <img *ngIf="word.imageUrl" [src]="word.imageUrl" alt="{{ word.wordFr }}" class="word-image">
+
+        <!-- 📄 Détails du mot -->
+        <div class="word-details">
+          <h3 *ngIf="dictionaryType === 'frToTarifit'">
+            {{ word.wordFr }} → <span class="tarifit">{{ word.wordTarifit }}</span> ({{ word.wordTifinagh }})
+          </h3>
+          <h3 *ngIf="dictionaryType === 'tarifitToFr'">
+            {{ word.wordTarifit }} ({{ word.wordTifinagh }}) → <span class="francais">{{ word.wordFr }}</span>
+          </h3>
+
+          <p><strong>Phonétique :</strong> {{ word.phonetic }}</p>
+          <p><strong>Synonymes :</strong> {{ word.synonyms.join(', ') }}</p>
+          <p><strong>Exemples :</strong> {{ word.examples.join(' | ') }}</p>
+
+          <!-- 🎧 Prononciation -->
+          <div class="audio-player" *ngIf="word.audioUrl">
+            <button class="audio-button" (click)="playAudio(word.audioUrl)">▶</button>
+            <audio controls [src]="word.audioUrl"></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

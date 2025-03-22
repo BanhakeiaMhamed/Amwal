@@ -1,0 +1,31 @@
+<ng-container
+  *ngTemplateOutlet="sidebar; context: { sidebar: sidebars.top }"
+></ng-container>
+<div class="flex flex-1 flex-nowrap w-full h-full">
+  <ng-container
+    *ngTemplateOutlet="sidebar; context: { sidebar: sidebars.left }"
+  ></ng-container>
+  <div class="flex-1">
+    <ng-content></ng-content>
+  </div>
+  <ng-container
+    *ngTemplateOutlet="sidebar; context: { sidebar: sidebars.right }"
+  ></ng-container>
+</div>
+<ng-container
+  *ngTemplateOutlet="sidebar; context: { sidebar: sidebars.bottom }"
+></ng-container>
+
+<ng-template #sidebar let-sidebar="sidebar">
+  <app-sidebar
+    [ref]="sidebar.ref"
+    [show]="sidebar.show"
+    [title]="sidebar.title"
+    [content]="sidebar.content"
+    [renderContent]="sidebar.renderContent"
+    [footerActions]="sidebar.footerActions"
+    [position]="sidebar.position"
+    [width]="sidebar.width"
+    [height]="sidebar.height"
+  ></app-sidebar>
+</ng-template>

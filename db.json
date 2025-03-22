@@ -1,0 +1,28 @@
+{
+  "words": [
+    {
+      "id": 1,
+      "wordFr": "bonjour",
+      "wordTarifit": "azul",
+      "wordTifinagh": "ⴰⵣⵓⵍ",
+      "phonetic": "a.zul",
+      "synonyms": ["salut", "hello"],
+      "acronyms": [],
+      "examples": ["Bonjour, comment ça va ?", "Salut !"],
+      "imageUrl": "./assets/bonjour.jpg",
+      "audioUrl": "https://example.com/bonjour.mp3"
+    },
+    {
+      "id": 2,
+      "wordFr": "chat",
+      "wordTarifit": "amush",
+      "wordTifinagh": "ⴰⵎⵓⵛ",
+      "phonetic": "a.muʃ",
+      "synonyms": ["félin", "minou"],
+      "acronyms": ["CAT"],
+      "examples": ["J'aime les chats"],
+      "imageUrl": "./assets/chat.jpg",
+      "audioUrl": "https://example.com/chat.mp3"
+    }
+  ]
+}

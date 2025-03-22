@@ -1,0 +1,31 @@
+@import "src/variables";
+
+.sidebar {
+  overflow: scroll;
+
+  transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+
+  .sidebar-header {
+    color: #171923;
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    padding: 0rem 24px;
+    border-bottom: 1px solid $gray !important;
+    font-size: 24px;
+    font-weight: 500;
+    position: relative;
+    border-top: 1px solid $gray;
+    font-family: "Inter", "Avenir", "Arial", sans-serif;
+
+  }
+
+  .sidebar-footer {
+    border-top: 2px solid $gray;
+    height: 86px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 1.5rem;
+  }
+}
